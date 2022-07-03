@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {
   addPosts
 } from "../../redux/actions/postsActions";
+import {useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from 'react-redux'
 const Container = styled.div`
   display: flex;
@@ -96,6 +97,7 @@ export const TextAreaFloat = styled.textarea`
 const AddPosts = () => {
   const dispatch = useDispatch()
   const [data, setData] = useState({});
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
   const handleChange = (e) => {
     const target = e.target;
@@ -110,6 +112,7 @@ const AddPosts = () => {
 const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addPosts({ ...data }));
+    navigate(`/`)
     document.getElementById("reset").reset()
 }
     return (
