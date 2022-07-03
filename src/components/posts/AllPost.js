@@ -93,7 +93,7 @@ const Posts = () => {
           </Card>
       )}
     </Container>
-    {posts?.data.length>0?
+    {posts?.data?.length>0?
      <Pagination>
      {posts?.prePage? <Nav onClick={()=> setPage(page-1)}>Previous</Nav>:null}
      {page} of {posts?.pageCount}
