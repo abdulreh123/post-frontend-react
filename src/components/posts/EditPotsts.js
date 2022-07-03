@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {
   editPosts,getPost,emptyPost
 } from "../../redux/actions/postsActions";
+import {useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from 'react-redux'
 const Container = styled.div`
   display: flex;
@@ -96,6 +97,7 @@ export const TextAreaFloat = styled.textarea`
 const EditPosts = () => {
   const dispatch = useDispatch()
   const [data, setData] = useState({});
+  const navigate = useNavigate();
   const id = parseInt(window.location.pathname.slice(12))
   const post = useSelector((state) => state.posts.post);
   const handleChange = (e) => {
@@ -110,6 +112,7 @@ const EditPosts = () => {
 const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(editPosts({ ...data },id));
+    navigate(`/single-posts/${id}`)
     document.getElementById("reset").reset()
 }
 useEffect(() => {
